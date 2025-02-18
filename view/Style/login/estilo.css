@@ -1,0 +1,181 @@
+@charset "UTF-8";
+
+/*
+    Paleta de cores
+    Verde: #B9BF04
+    Amarelo: #F2BA52
+    Marrom-claro: #D99962
+    Marrom-escuro: #8C6954
+    Vermelho: #F23D3D
+*/
+
+*{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root{
+    --verde:#b9bf04;
+    --amarelo: #F2BA52;
+    --marom-claro:#D99962;
+    --marrom-escuro:#8C6954;
+    --vermelho: #F23D3D;
+}
+
+body,html{
+width: 100vw;
+height: 100vh;
+background-color: var(--marrom-escuro);
+}
+main{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+div#formulario{
+    margin-top: 10px;
+   padding: 0px 0px 0px 10px;
+}
+div#formulario label{
+    display: none;
+}
+div#formulario>h1{
+    text-align: center;
+    margin-bottom: 5px;
+    color: var(--vermelho);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.452);
+    font-size: 2em;
+}
+div#formulario>p{
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.404);
+    font-size: 1em;
+    padding: 10px;
+}
+div#imagem{
+   
+    height: 33vh;
+    background-image: url(../../img/login/pexels-nc-farm-bureau-mark-2255935.jpg);
+    background-position: center center ;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    
+}
+
+section#login{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 350px;
+    height: 600px;
+    background-color: var(--verde);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.473);
+    transition: width 0.7s , heigth 0.7s;
+}
+input[type=email],input[type=password]{
+    width: 90%;
+    height: 100%;
+    display: block;
+    margin: auto;
+    border-radius: 5px;
+    font-size: 1.1em;
+    text-align: center;
+    border: none;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.377);
+}
+/* input{
+    font-size: 1.5em;
+    border-radius: 10px;
+    background-color: white;
+    display: block;
+    width: 65vw;
+    height: 45px;
+    margin:auto;
+    padding: 0px;
+} */
+
+form>div#botão>input[type=submit]{
+    margin: auto;
+    margin-top: 10px;
+    display: block;
+    font-size: 1em;
+    width: 90%;
+    height: 40px;
+    background-color: #F2BA52;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 5px;
+
+}
+form>div#botão>input[type=submit]:hover{
+background-color: #ffe75c;
+cursor: pointer;
+border: 1px solid #F23D3D;
+color: #F23D3D;
+}
+form>div#botão>a.btn{
+    position: relative;
+    text-align: center;
+    margin: auto;
+    display: block;
+    font-size: 1em;
+    width: 90%;
+    height: 40px;
+    background-color: #F2BA52;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: #000;
+    text-decoration: none;
+    padding-top: 8px;
+    
+    
+}
+form>div#botão>a>span.material-symbols-outlined{
+    position: absolute;
+    top: 15%;
+    left: 72%;
+    font-size: 1.5em;    
+}
+form>div#botão>a:hover>span.material-symbols-outlined{
+    color:black;
+}
+div#formulario>form>div#botão>span.material-symbols-outlined{
+    position: absolute;
+    top: 25%;
+    left: 40%;
+    transform:translate(-50%,-50%)
+}
+
+form>div#botão>a.btn:hover{
+    background-color: #ffe75c;
+    cursor: pointer;
+    border: 1px solid #F23D3D;
+    color: #F23D3D;
+}
+div.campo{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #f6ff0000;
+    margin-bottom: 5px;
+}
+div#botão{
+    display: block;
+    width: 100%;
+    position: relative;
+}
+div.campo>span.material-symbols-outlined{
+   position: absolute;
+    top: 9%;
+    left: 1%;
+    transform: translate(-50%);
+}
