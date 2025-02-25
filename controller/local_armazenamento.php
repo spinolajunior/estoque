@@ -1,7 +1,6 @@
 <?php 
-require_once "conexao.php";
 
-class Local_armazenamento extends Conexao{
+class Local_armazenamentoController extends Conexao{
     function __construct(array $uri,$metodo){
         parent::__construct();
         echo "Controlador da classe Local_armazenamento";    

@@ -1,7 +1,6 @@
 <?php 
-require_once "conexao.php";
 
-class Pessoa extends Conexao{
+class PessoaControler extends Conexao{
     function __construct(array $uri,$metodo){
         parent::__construct();
         echo "Controlador da classe Pessoa";    

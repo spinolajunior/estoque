@@ -1,7 +1,8 @@
 <?php 
-require_once "conexao.php";
-
-class Categoria extends Conexao{
+require 'controller/conexao.php';
+require 'controller/controlador.php';
+class CategoriaControler extends Conexao{
+    use Controlador;
     function __construct(array $uri,$metodo){
         parent::__construct();
         echo "Controlador da classe Produto";    

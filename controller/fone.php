@@ -1,7 +1,5 @@
 <?php 
-require_once "conexao.php";
-
-class Fone extends Conexao{
+class FoneControler extends Conexao{
     function __construct(array $uri,$metodo){
         parent::__construct();
         echo "Controlador da classe Fone";    
