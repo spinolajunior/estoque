@@ -4,20 +4,21 @@ trait Controlador {
     public function despachar($uri,$metodo)
     {
         parent::__construct(); #chama o construtor do pai conexão
-        echo "Controlador da classe ".get_class($this);
+        
 
         if(count($uri) == 1){
             if($metodo == 'GET')
-                $this->listar();
+                return $this->listar();
             elseif($metodo == 'POST')
-                $this->post();
+                return $this->post();
         }elseif(count($uri) ==2){
             if($metodo == 'GET')
-                $this->get();
+                return $this->get($uri[1]);
             elseif($metodo == 'PUT')
-                $this->put();
+                return $this->put($uri[1]);
             elseif($metodo == 'Delete')
-                $this->delete();
+                return $this->delete($uri[1]);
         }
     }
+        
 }

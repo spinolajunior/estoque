@@ -5,12 +5,32 @@ class ProdutoView {
     {
         $this->controlador = new ProdutoControler();
         $retorno = $this->controlador->despachar($uri,$metodo);
-        $retorno;
+
+
+        if(count($uri)==1){
+            if($metodo == 'GET')
+            return $this -> listar($retorno);
+            elseif ($metodo == 'POST')
+            return  $this -> post($retorno);
+            
+        }
+        elseif(count($uri)==2){
+            if($metodo == 'GET')
+            return $this -> get($retorno);
+        
+            elseif ($metodo == 'PUT')
+            return  $this -> put($retorno);
+            
+            elseif ($metodo == 'DELETE')
+            return  $this -> delete($retorno);
+            
+        }
     }
 
-    public function listar()
+    public function listar($produto)
     {
-        $produto = $this->controlador->$this->pdo ->query("SELECT * from produto; ") ->fetchAll();
+
+        echo "<b> Produtos Cadastrados </b>";
     
         foreach($produto as $query)
         {
@@ -22,31 +42,9 @@ class ProdutoView {
         } 
     }
     
-    public function post()
+    public function get($produto)
     {
-        $teste = ['nome'];
-        foreach ($teste as $campo) 
-        {
-            if (!isset($_POST[$campo]) || empty($_POST[$campo])) 
-            {
-                echo "<br>Erro: O campo '$campo' é obrigatório e não pode estar vazio.";
-                return;
-            }
-        }
-    
-        $query = $this->controlador->$this->pdo ->query("INSERT INTO produtos (`nome`) VALUES ('$_POST[nome]')");
-    
-            if($query){
-                echo "<br> Sucesso";
-            }else{
-                echo "<br> Erro";
-            }
-    }
-    
-    public function get($id)
-    {
-        $produto = $this->controlador->$this->pdo ->query("SELECT * from produto WHERE codBarras = '$id'; ") ->fetchAll();
-    
+        
         foreach($produto as $query)
         {
                 echo "<br>";
@@ -56,46 +54,21 @@ class ProdutoView {
                 echo  $query['quantidade']." |<br> ";
         }
     }
+
+    public function post($produto)
+    {
+        
+    }
     
     
     public function put($id)
     {
-        global $_PUT;
-    
-        echo "Atualizar: $id";
         
-        $teste = ['nome'];
-    
-        foreach ($teste as $campo) {
-            if (!isset($_PUT[$campo]) || empty($_PUT[$campo])) {
-                echo "<br>Erro: O campo '$campo' é obrigatório e não pode estar vazio.";
-                return;
-            }
-        }
-        $query = $this->controlador->$this->pdo ->query("UPDATE produto SET nome = '$_PUT[nome]'  WHERE id_user ='$id';");
-        if($query){
-            echo "<br> Sucesso";
-        }else{
-            echo "<br> Erro";
-        }
     }
     
     public function delete($id)
     {
-        echo "Deletar: $id";
-            
-        $query = $this->controlador->$this->pdo ->query("SELECT codBarras FROM produto WHERE codBarras='$id'; ");
         
-        if($query){
-            $query = $this->controlador->$this->pdo ->query("DELETE FROM produto WHERE codBarras ='$id';");
-            if($query){
-                echo "<br> Sucesso! ID: $id deletado.";
-            }else{
-                echo "<br> Erro!";
-            }
-        }else{
-            echo "<br> Erro: Produto com cod Barras ID = $id não encontrada.";
-        }
     }
 
 }

@@ -1,7 +1,7 @@
 <?php
-require 'controller/categoria.php';
 require 'controller/conexao.php';
 require 'controller/controlador.php';
+require 'controller/categoria.php';
 require 'controller/fone.php';
 require 'controller/local_armazenamento.php';
 require 'controller/movimentacao.php';
@@ -10,6 +10,7 @@ require 'controller/produto.php';
 require 'controller/tipopessoa.php';
 require 'controller/transacao.php';
 require 'view/view/produto_view.php';
+require 'view/view/categoriaView.php';
 
 $metodo = $_SERVER['REQUEST_METHOD'];
 $uri = explode("$",$_SERVER['REQUEST_URI'])[0];
@@ -21,9 +22,7 @@ if($metodo == 'PUT'){
 	
 }
 array_shift($uri);
-var_dump($uri);
-echo "<br> $metodo";
-echo "<br>";
+
 
 try
 {

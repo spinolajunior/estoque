@@ -10,7 +10,7 @@ class Conexao{
 
         $this->pdo = new PDO("mysql:host=$host;dbname=$dbName",$userName,$password);
 
-        echo "conexao bem sucedida ao banco de dados <b>$dbName</b>. <br>";
+        #echo "conexao bem sucedida ao banco de dados <b>$dbName</b>. <br>";
 
         }catch(PDOException $e){
         echo "Erro ao conectar ao banco de dados: $dbName. <br>";
