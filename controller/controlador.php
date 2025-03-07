@@ -16,7 +16,7 @@ trait Controlador {
                 return $this->get($uri[1]);
             elseif($metodo == 'PUT')
                 return $this->put($uri[1]);
-            elseif($metodo == 'Delete')
+            elseif($metodo == 'DELETE')
                 return $this->delete($uri[1]);
         }
     }

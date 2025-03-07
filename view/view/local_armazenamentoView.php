@@ -1,6 +1,6 @@
 <?php 
 
-class CategoriaView{
+class Local_armazenamentoView{
 private $controlador,$retorno,$teste;
 function __construct($uri,$metodo)
 {

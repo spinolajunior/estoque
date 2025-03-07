@@ -5,33 +5,39 @@ class ProdutoControler extends Conexao{
 
     
     public function listar()
-    {
-        return $this ->pdo->query("SELECT * from produto; ") ->fetchAll();
-    }
+{
+    return $this -> pdo -> query("SELECT * from categoria; ") ->fetchAll();
+}
 
-    public function get($id)
-    {
-        return $this->pdo ->query("SELECT * from produto WHERE codBarras = '$id'; ") ->fetchAll();
-    
-    }
-    
-    public function post()
-    {    
-        
-        return $this->pdo ->query("INSERT INTO produtos (`nome`) VALUES ('{$_POST['nome']}')");     
-    }
-    
-    public function put($id)
-    {
-        global $_PUT;
-    $this-> pdo ->query("UPDATE produto SET nome = '{$_PUT['nome']}'  WHERE id_user ='$id';");
-    }
-    
-    public function delete($id)
-    {
-        $query = $this->$this->pdo ->query("SELECT codBarras FROM produto WHERE codBarras='$id'; ");
-        
-    }
+
+public function get($id)
+{
+    return $this-> pdo -> query("SELECT * from categoria WHERE idCategoria = '$id'; ") ->fetchAll();  
+}
+
+public function post()
+{
+
+    $nome = $_POST['nome'];
+    return $this-> pdo -> query("insert into categoria (nome) values ('$nome');");  
+
+}
+
+public function put($id)
+{
+    global $_PUT;
+    $novo = $_PUT['nome'];
+   return $this-> pdo -> query("UPDATE categoria SET nome = '$novo' where idCategoria = $id;");
+}
+
+public function delete($id)
+{
+    $consulta = $this-> pdo -> query("SELECT idCategoria FROM categoria WHERE idCategoria = $id");
+    if($consulta)
+        return $this-> pdo -> query("DELETE  FROM categoria WHERE idCategoria = $id");
+    else
+        return false;
+}
 
 }
     

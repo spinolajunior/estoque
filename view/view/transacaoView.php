@@ -1,6 +1,6 @@
 <?php 
 
-class CategoriaView{
+class TransacaoView{
 private $controlador,$retorno,$teste;
 function __construct($uri,$metodo)
 {

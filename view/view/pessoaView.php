@@ -1,6 +1,6 @@
 <?php 
 
-class CategoriaView{
+class PessoaView{
 private $controlador,$retorno,$teste;
 function __construct($uri,$metodo)
 {

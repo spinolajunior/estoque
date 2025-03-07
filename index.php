@@ -9,8 +9,14 @@ require 'controller/pessoa.php';
 require 'controller/produto.php';
 require 'controller/tipopessoa.php';
 require 'controller/transacao.php';
-require 'view/view/produto_view.php';
 require 'view/view/categoriaView.php';
+require 'view/view/foneView.php';
+require 'view/view/local_armazenamentoView.php';
+require 'view/view/movimentacaoView.php';
+require 'view/view/pessoaView.php';
+require 'view/view/produtoView.php';
+require 'view/view/tipopessoaView.php';
+require 'view/view/transacaoView.php';
 
 $metodo = $_SERVER['REQUEST_METHOD'];
 $uri = explode("$",$_SERVER['REQUEST_URI'])[0];

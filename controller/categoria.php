@@ -36,10 +36,9 @@ public function put($id)
 public function delete($id)
 {
     $consulta = $this-> pdo -> query("SELECT idCategoria FROM categoria WHERE idCategoria = $id");
-    var_dump($consulta);
     if($consulta)
-        return $this-> pdo -> query("DELETE FROM categoria WHERE idCategoria = $id");
-    else 
+        return $this-> pdo -> query("DELETE  FROM categoria WHERE idCategoria = $id");
+    else
         return false;
 }
 

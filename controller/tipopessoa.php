@@ -22,88 +22,39 @@ class Tipo_pessoaController extends Conexao{
     }
   }
 
-public function listar()
-{
-    $tipoPessoa = $this -> pdo -> query("SELECT * from tipopessoa; ") ->fetchAll();
-
-    foreach($tipoPessoa as $query)
-    {
-            echo "<br>";
-            echo  $query['idTipo']." | ";
-            echo  $query['nome']." |";
-    }
-}
-
-public function post()
-{
-    $teste = ['nome'];
-    foreach ($teste as $campo) 
-    {
-        if (!isset($_POST[$campo]) || empty($_POST[$campo])) 
-        {
-            echo "<br>Erro: O campo '$campo' é obrigatório e não pode estar vazio.";
-            return;
-        }
-    }
-
-    $query = $this -> pdo -> query("INSERT INTO tipopessoa (`nome`) VALUES ('$_POST[nome]')");
-
-        if($query){
-            echo "<br> Sucesso";
-        }else{
-            echo "<br> Erro";
-        }
-}
-
-public function get($id)
-{
-    $tipoPessoa = $this -> pdo -> query("SELECT * from tipopessoa WHERE idTipo = '$id'; ") ->fetchAll();
-
-    foreach($tipoPessoa as $query)
-    {
-            echo "<br>";
-            echo  $query['idtipo']." | ";
-            echo  $query['nome']." |";
-    }
-}
-
-public function put($id)
-{
-    global $_PUT;
-
-    echo "Atualizar: $id";
-    
-    $teste = ['nome'];
-
-    foreach ($teste as $campo) {
-        if (!isset($_PUT[$campo]) || empty($_PUT[$campo])) {
-            echo "<br>Erro: O campo '$campo' é obrigatório e não pode estar vazio.";
-            return;
-        }
-    }
-    $query = $this -> pdo -> query("UPDATE tipopessoa SET nome = '$_PUT[nome]'  WHERE idTipo ='$id';");
-    if($query){
-        echo "<br> Sucesso";
-    }else{
-        echo "<br> Erro";
-    }
-}
-
-public function delete($id)
-{
-    echo "Deletar: $id";
-        
-    $query = $this -> pdo -> query("SELECT idTipo FROM tipopessoa WHERE idTipo='$id'; ");
-    
-    if($query){
-        $query = $this -> pdo -> query("DELETE FROM tipopessoa WHERE idTipo ='$id';");
-        if($query){
-            echo "<br> Sucesso! Transação ID: $id deletado.";
-        }else{
-            echo "<br> Erro!";
-        }
-    }else{
-        echo "<br> Erro: Transação com ID = $id não encontrada.";
-    }
-}
+  public function listar()
+  {
+      return $this -> pdo -> query("SELECT * from categoria; ") ->fetchAll();
+  }
+  
+  
+  public function get($id)
+  {
+      return $this-> pdo -> query("SELECT * from categoria WHERE idCategoria = '$id'; ") ->fetchAll();  
+  }
+  
+  public function post()
+  {
+  
+      $nome = $_POST['nome'];
+      return $this-> pdo -> query("insert into categoria (nome) values ('$nome');");  
+  
+  }
+  
+  public function put($id)
+  {
+      global $_PUT;
+      $novo = $_PUT['nome'];
+     return $this-> pdo -> query("UPDATE categoria SET nome = '$novo' where idCategoria = $id;");
+  }
+  
+  public function delete($id)
+  {
+      $consulta = $this-> pdo -> query("SELECT idCategoria FROM categoria WHERE idCategoria = $id");
+      if($consulta)
+          return $this-> pdo -> query("DELETE  FROM categoria WHERE idCategoria = $id");
+      else
+          return false;
+  }
+  
 }

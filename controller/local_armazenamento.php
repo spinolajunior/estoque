@@ -22,88 +22,39 @@ class Local_armazenamentoController extends Conexao{
     }
   }
 
-public function listar()
-{
-    $local_armazenamento = $this -> pdo -> query("SELECT * from local_arm; ") ->fetchAll();
-
-    foreach($local_armazenamento as $query)
-    {
-            echo "<br>";
-            echo  $query['idLocal_arm']." | ";
-            echo  $query['local']." |";
-    }
-}
-
-public function post()
-{
-    $teste = ['nome'];
-    foreach ($teste as $campo) 
-    {
-        if (!isset($_POST[$campo]) || empty($_POST[$campo])) 
-        {
-            echo "<br>Erro: O campo '$campo' é obrigatório e não pode estar vazio.";
-            return;
-        }
-    }
-
-    $query = $this -> pdo -> query("INSERT INTO local_arm (`local`) VALUES ('$_POST[local]')");
-
-        if($query){
-            echo "<br> Sucesso";
-        }else{
-            echo "<br> Erro";
-        }
-}
-
-public function get($id)
-{
-    $local_armazenamento = $this -> pdo -> query("SELECT * from local_arm where idLocal_arm = $id ; ") ->fetchAll();
-
-    foreach($local_armazenamento as $query)
-    {
-            echo "<br>";
-            echo  $query['idLocal_arm']." | ";
-            echo  $query['local']." |";
-    }
-}
-
-public function put($id)
-{
-    global $_PUT;
-
-    echo "Atualizar: $id";
-    
-    $teste = ['nome'];
-
-    foreach ($teste as $campo) {
-        if (!isset($_PUT[$campo]) || empty($_PUT[$campo])) {
-            echo "<br>Erro: O campo '$campo' é obrigatório e não pode estar vazio.";
-            return;
-        }
-    }
-    $query = $this -> pdo -> query("UPDATE local_arm SET local = '$_PUT[local]'  WHERE idLocal_arm ='$id';");
-    if($query){
-        echo "<br> Sucesso";
-    }else{
-        echo "<br> Erro";
-    }
-}
-
-public function delete($id)
-{
-    echo "Deletar: $id";
-        
-    $query = $this -> pdo -> query("SELECT idLocal_arm FROM local_arm WHERE idLocal_arm='$id'; ");
-    
-    if($query){
-        $query = $this -> pdo -> query("DELETE FROM fone WHERE idFone ='$id';");
-        if($query){
-            echo "<br> Sucesso! Local armazenamento ID: $id deletado.";
-        }else{
-            echo "<br> Erro!";
-        }
-    }else{
-        echo "<br> Erro: local armazenamento com ID = $id não encontrado.";
-    }
-}
+  public function listar()
+  {
+      return $this -> pdo -> query("SELECT * from categoria; ") ->fetchAll();
+  }
+  
+  
+  public function get($id)
+  {
+      return $this-> pdo -> query("SELECT * from categoria WHERE idCategoria = '$id'; ") ->fetchAll();  
+  }
+  
+  public function post()
+  {
+  
+      $nome = $_POST['nome'];
+      return $this-> pdo -> query("insert into categoria (nome) values ('$nome');");  
+  
+  }
+  
+  public function put($id)
+  {
+      global $_PUT;
+      $novo = $_PUT['nome'];
+     return $this-> pdo -> query("UPDATE categoria SET nome = '$novo' where idCategoria = $id;");
+  }
+  
+  public function delete($id)
+  {
+      $consulta = $this-> pdo -> query("SELECT idCategoria FROM categoria WHERE idCategoria = $id");
+      if($consulta)
+          return $this-> pdo -> query("DELETE  FROM categoria WHERE idCategoria = $id");
+      else
+          return false;
+  }
+  
 }
