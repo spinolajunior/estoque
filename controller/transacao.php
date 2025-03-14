@@ -1,6 +1,7 @@
 <?php 
 
 class TransacaoController extends Conexao{
+    use controlador;
     function __construct(array $uri,$metodo){
         parent::__construct();
         echo "Controlador da classe Transacao";    
@@ -24,35 +25,35 @@ class TransacaoController extends Conexao{
 
   public function listar()
   {
-      return $this -> pdo -> query("SELECT * from categoria; ") ->fetchAll();
+      return $this -> pdo -> query("SELECT * from transacao; ") ->fetchAll();
   }
   
   
   public function get($id)
   {
-      return $this-> pdo -> query("SELECT * from categoria WHERE idCategoria = '$id'; ") ->fetchAll();  
+      return $this-> pdo -> query("SELECT * from transacao WHERE idTra = '$id'; ") ->fetchAll();  
   }
   
   public function post()
   {
   
       $nome = $_POST['nome'];
-      return $this-> pdo -> query("insert into categoria (nome) values ('$nome');");  
+      return $this-> pdo -> query("insert into transacao (nome) values ('$nome');");  
   
   }
   
   public function put($id)
   {
       global $_PUT;
-      $novo = $_PUT['nome'];
-     return $this-> pdo -> query("UPDATE categoria SET nome = '$novo' where idCategoria = $id;");
+      $nome = $_PUT['nome'];
+     return $this-> pdo -> query("UPDATE transacao SET nome = '$nome' where idTra = $id;");
   }
   
   public function delete($id)
   {
-      $consulta = $this-> pdo -> query("SELECT idCategoria FROM categoria WHERE idCategoria = $id");
+      $consulta = $this-> pdo -> query("SELECT idTra FROM transacao WHERE idTra = $id");
       if($consulta)
-          return $this-> pdo -> query("DELETE  FROM categoria WHERE idCategoria = $id");
+          return $this-> pdo -> query("DELETE  FROM transacao WHERE idTra = $id");
       else
           return false;
   }

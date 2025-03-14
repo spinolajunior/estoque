@@ -1,6 +1,7 @@
 <?php 
 
 class Local_armazenamentoController extends Conexao{
+    use Controlador;
     function __construct(array $uri,$metodo){
         parent::__construct();
         echo "Controlador da classe Local_armazenamento";    
@@ -24,35 +25,35 @@ class Local_armazenamentoController extends Conexao{
 
   public function listar()
   {
-      return $this -> pdo -> query("SELECT * from categoria; ") ->fetchAll();
+      return $this -> pdo -> query("SELECT * from local_arm ; ") ->fetchAll();
   }
   
   
   public function get($id)
   {
-      return $this-> pdo -> query("SELECT * from categoria WHERE idCategoria = '$id'; ") ->fetchAll();  
+      return $this-> pdo -> query("SELECT * from local_arm WHERE idLocal_arm = '$id'; ") ->fetchAll();  
   }
   
   public function post()
   {
   
-      $nome = $_POST['nome'];
-      return $this-> pdo -> query("insert into categoria (nome) values ('$nome');");  
+      $local = $_POST['local'];
+      return $this-> pdo -> query("INSERT INTO local_arm (local) values ('$local');");  
   
   }
   
   public function put($id)
   {
       global $_PUT;
-      $novo = $_PUT['nome'];
-     return $this-> pdo -> query("UPDATE categoria SET nome = '$novo' where idCategoria = $id;");
+      $local = $_POST['local'];
+     return $this-> pdo -> query("UPDATE local_arm SET local = '$local' where idLocal_arm = $id;");
   }
   
   public function delete($id)
   {
-      $consulta = $this-> pdo -> query("SELECT idCategoria FROM categoria WHERE idCategoria = $id");
+      $consulta = $this-> pdo -> query("SELECT idLocal_arm FROM local_arm WHERE idLocal_arm = $id");
       if($consulta)
-          return $this-> pdo -> query("DELETE  FROM categoria WHERE idCategoria = $id");
+          return $this-> pdo -> query("DELETE  FROM local_arm WHERE idLocal_arm = $id");
       else
           return false;
   }

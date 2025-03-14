@@ -1,6 +1,7 @@
 <?php 
 
 class Tipo_pessoaController extends Conexao{
+    use controlador;
     function __construct(array $uri,$metodo){
         parent::__construct();
         echo "Controlador da classe TipoPessoa";    
@@ -24,35 +25,35 @@ class Tipo_pessoaController extends Conexao{
 
   public function listar()
   {
-      return $this -> pdo -> query("SELECT * from categoria; ") ->fetchAll();
+      return $this -> pdo -> query("SELECT * from tipopessoa; ") ->fetchAll();
   }
   
   
   public function get($id)
   {
-      return $this-> pdo -> query("SELECT * from categoria WHERE idCategoria = '$id'; ") ->fetchAll();  
+      return $this-> pdo -> query("SELECT * from tipopessoa WHERE idTipo = '$id'; ") ->fetchAll();  
   }
   
   public function post()
   {
   
       $nome = $_POST['nome'];
-      return $this-> pdo -> query("insert into categoria (nome) values ('$nome');");  
+      return $this-> pdo -> query("INSERT INTO  tipopessoa (nome) values ('$nome');");  
   
   }
   
   public function put($id)
   {
       global $_PUT;
-      $novo = $_PUT['nome'];
-     return $this-> pdo -> query("UPDATE categoria SET nome = '$novo' where idCategoria = $id;");
+      $nome = $_PUT['nome'];
+     return $this-> pdo -> query("UPDATE tipopessoa SET nome = '$nome' where idTipo = $id;");
   }
   
   public function delete($id)
   {
-      $consulta = $this-> pdo -> query("SELECT idCategoria FROM categoria WHERE idCategoria = $id");
+      $consulta = $this-> pdo -> query("SELECT idTipo FROM tipopessoa WHERE idTipo = $id");
       if($consulta)
-          return $this-> pdo -> query("DELETE  FROM categoria WHERE idCategoria = $id");
+          return $this-> pdo -> query("DELETE  FROM tipopessoa WHERE idTipo = $id");
       else
           return false;
   }
