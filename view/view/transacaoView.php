@@ -1,11 +1,11 @@
 <?php 
 
 class TransacaoView{
-private $controlador,$retorno,$teste;
+private $controlador,$retorno,$uri;
 function __construct($uri,$metodo)
 {
-    $this->teste = $uri;
-    $this-> controlador = new CategoriaControler($uri,$metodo);
+    $this->uri = $uri;
+    $this-> controlador = new TransacaoController($uri,$metodo);
     $retorno = $this->controlador->despachar($uri,$metodo);
 
     if(count($uri)==1){
@@ -29,57 +29,57 @@ function __construct($uri,$metodo)
 
 
 }
-public function listar($categoria)
+public function listar($transacao)
     {
 
-        echo "<b> Categorias Cadastradas </b>";
+        echo "<b> Transações Cadastradas </b>";
     
-        foreach($categoria as $query)
+        foreach($transacao as $query)
         {
                 echo "<br>";
-                echo  'ID = '.$query['idCategoria']." | ";
-                echo  'Categoria = '.$query['nome']." |";
+                echo  'ID = '.$query['idTra']." | ";
+                echo  'Transação = '.$query['nome']." |";
         } 
     }
     
-    public function get($categoria)
+    public function get($transacao)
     {
-        if($categoria){
-        echo "<b> Categoria Cadastrada  com o id = </b>".$this->teste[1];
-        foreach($categoria as $query)
+        if($transacao){
+        echo "<b> Transação Cadastrada com o id = </b>".$this->uri[1];
+        foreach($transacao as $query)
         {
                 echo "<br>";
-                echo  'ID = '.$query['idCategoria']." | ";
-                echo  'Categoria = '.$query['nome']." |";
+                echo  'ID = '.$query['idTra']." | ";
+                echo  'Transação = '.$query['nome']." |";
         }
         } else{
-            echo "<b> Categoria com o id = </b>".$this->teste[1]."<b> não existe.</b>";
+            echo "<b>Transação com o id = </b>".$this->uri[1]."<b> não existe.</b>";
         }
         
 
     }
 
-    public function post($categoria)
+    public function post($transacao)
     {
-        if ($categoria)
-            echo "Categoria cadastrada com sucesso!";
+        if ($transacao)
+            echo "Transação cadastrada com sucesso!";
         else
             echo "Erro";
     }
     
     
-    public function put($categoria)
+    public function put($transacao)
     {
-        if ($categoria)
-            echo "Categoria alterada com sucesso!";
+        if ($transacao)
+            echo "Transação alterada com sucesso!";
         else
-            echo "Erro na atualização da categoria!";
+            echo "Erro na atualização da Transação!";
     }
     
-    public function delete($categoria)
+    public function delete($transacao)
     {
-        if($categoria)
-            echo "Categoria id {$this->teste[1]} Deletada com sucesso!";
+        if($transacao)
+            echo "Transação id = ".$this->uri[1]." Deletada com sucesso!";
         else
             echo "deu erro!";
     }

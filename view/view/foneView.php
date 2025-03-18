@@ -1,11 +1,11 @@
 <?php 
 
 class FoneView{
-    private $controlador,$retorno,$teste;
+    private $controlador,$retorno,$uri;
     function __construct($uri,$metodo)
     {
 
-        $this->teste = $uri;
+        $this->uri = $uri;
         $this-> controlador = new FoneControler($uri,$metodo);
         $retorno = $this->controlador->despachar($uri,$metodo);
 
@@ -30,57 +30,59 @@ class FoneView{
 
 
 }
-public function listar($categoria)
+public function listar($fone)
     {
 
-        echo "<b> Categorias Cadastradas </b>";
+        echo "<b> Telefones Cadastrados </b>";
     
-        foreach($categoria as $query)
+        foreach($fone as $query)
         {
                 echo "<br>";
-                echo  'ID = '.$query['idCategoria']." | ";
-                echo  'Categoria = '.$query['nome']." |";
+                echo  'ID = '.$query['idFone']." | ";
+                echo  'Fone = '.$query['tel']." |";
+                echo 'ID-pessoa = '.$query['id_Pessoa'].' |';
         } 
     }
     
-    public function get($categoria)
+    public function get($fone)
     {
-        if($categoria){
-        echo "<b> Categoria Cadastrada  com o id = </b>".$this->teste[1];
-        foreach($categoria as $query)
+        if($fone){
+        echo "<b> Telefones Cadastrados  com o id = </b>".$this->uri[1];
+        foreach($fone as $query)
         {
-                echo "<br>";
-                echo  'ID = '.$query['idCategoria']." | ";
-                echo  'Categoria = '.$query['nome']." |";
+            echo "<br>";
+            echo  'ID = '.$query['idFone']." | ";
+            echo  'Fone = '.$query['tel']." |";
+            echo 'ID-pessoa = '.$query['id_Pessoa'].' |';
         }
         } else{
-            echo "<b> Categoria com o id = </b>".$this->teste[1]."<b> não existe.</b>";
+            echo "<b> Telefone com o id = </b>".$this->uri[1]."<b> não existe.</b>";
         }
         
 
     }
 
-    public function post($categoria)
+    public function post($fone)
     {
-        if ($categoria)
-            echo "Categoria cadastrada com sucesso!";
+        if ($fone)
+            echo "Telefone cadastrado com sucesso!";
         else
             echo "Erro";
     }
     
     
-    public function put($categoria)
+    public function put($fone)
     {
-        if ($categoria)
-            echo "Categoria alterada com sucesso!";
+        if ($fone)
+            echo "Telefone id = ".$this->uri[1]." alterado com sucesso!";
         else
-            echo "Erro na atualização da categoria!";
+            echo "Erro na atualização do Telefone";
     }
     
-    public function delete($categoria)
+    public function delete($fone)
     {
-        if($categoria)
-            echo "Categoria id {$this->teste[1]} Deletada com sucesso!";
+        if($fone)
+            echo "Categoria id = ".$this->uri[1]." Deletada com sucesso!";
         else
             echo "deu erro!";
     }

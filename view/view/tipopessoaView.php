@@ -1,11 +1,11 @@
 <?php 
 
 class TipopessoaView{
-private $controlador,$retorno,$teste;
+private $controlador,$retorno,$uri;
 function __construct($uri,$metodo)
 {
-    $this->teste = $uri;
-    $this-> controlador = new CategoriaControler($uri,$metodo);
+    $this->uri = $uri;
+    $this-> controlador = new Tipo_pessoaController($uri,$metodo);
     $retorno = $this->controlador->despachar($uri,$metodo);
 
     if(count($uri)==1){
@@ -29,57 +29,56 @@ function __construct($uri,$metodo)
 
 
 }
-public function listar($categoria)
-    {
-
-        echo "<b> Categorias Cadastradas </b>";
+public function listar($tipopessoa)
+{
+        echo "<b> Tipo pessoa Cadastrado </b>";
     
-        foreach($categoria as $query)
+        foreach($tipopessoa as $query)
         {
                 echo "<br>";
-                echo  'ID = '.$query['idCategoria']." | ";
-                echo  'Categoria = '.$query['nome']." |";
+                echo  'ID = '.$query['idTipo']." | ";
+                echo  'Tipo = '.$query['nome']." |";
         } 
     }
     
-    public function get($categoria)
+    public function get($tipopessoa)
     {
-        if($categoria){
-        echo "<b> Categoria Cadastrada  com o id = </b>".$this->teste[1];
-        foreach($categoria as $query)
+        if($tipopessoa){
+        echo "<b> Tipo de pessoa Cadastrado com o id = </b>".$this->uri[1];
+        foreach($tipopessoa as $query)
         {
                 echo "<br>";
-                echo  'ID = '.$query['idCategoria']." | ";
-                echo  'Categoria = '.$query['nome']." |";
+                echo  'ID = '.$query['idTipo']." | ";
+                echo  'Tipo = '.$query['nome']." |";
         }
         } else{
-            echo "<b> Categoria com o id = </b>".$this->teste[1]."<b> não existe.</b>";
+            echo "<b> Tipo de pessoa com o id = </b>".$this->uri[1]."<b> não existe.</b>";
         }
         
 
     }
 
-    public function post($categoria)
+    public function post($tipopessoa)
     {
-        if ($categoria)
-            echo "Categoria cadastrada com sucesso!";
+        if ($tipopessoa)
+            echo "Tipo de pessoa cadastrado com sucesso!";
         else
             echo "Erro";
     }
     
     
-    public function put($categoria)
+    public function put($tipopessoa)
     {
-        if ($categoria)
-            echo "Categoria alterada com sucesso!";
+        if ($tipopessoa)
+            echo "Tipo de pessoa alterado com sucesso!";
         else
-            echo "Erro na atualização da categoria!";
+            echo "Erro na atualização do Tipo de pessoa!";
     }
     
-    public function delete($categoria)
+    public function delete($tipopessoa)
     {
-        if($categoria)
-            echo "Categoria id {$this->teste[1]} Deletada com sucesso!";
+        if($tipopessoa)
+            echo "Tipo de pessoa id = ".$this->uri[1].", Deletado com sucesso!";
         else
             echo "deu erro!";
     }

@@ -1,8 +1,9 @@
 <?php 
 class ProdutoView {
-    private $controlador,$retorno;
+    private $controlador,$retorno,$uri;
     function __construct($uri,$metodo)
     {
+        $this->uri=$uri;
         $this->controlador = new ProdutoControler();
         $retorno = $this->controlador->despachar($uri,$metodo);
 
@@ -44,12 +45,12 @@ class ProdutoView {
     
     public function get($produto)
     {
-        
+        echo "<b>Produto cadastrado com o id </b>".$this->uri[1];
         foreach($produto as $query)
         {
                 echo "<br>";
-                echo  $query['codBarras']." | ";
                 echo  $query['nome']." |";
+                echo  $query['codBarras']." | ";
                 echo  $query['validade']." |";
                 echo  $query['quantidade']." |<br> ";
         }
@@ -57,18 +58,31 @@ class ProdutoView {
 
     public function post($produto)
     {
-        
+       
+        if($produto){
+            echo 'Produto cadastrado com sucesso';
+        }else{
+            echo 'Falha ao cadastrar o produto';
+        }
     }
     
     
-    public function put($id)
+    public function put($produto)
     {
-        
+        if($produto){
+            echo 'Produto atualizado com sucesso';
+        }else{
+            echo 'Falha ao atualizar o produto';
+        }
     }
     
-    public function delete($id)
+    public function delete($produto)
     {
-        
+        if($produto){
+            echo "<b>Produto com o id = ".$this->uri." Deletado com sucesso!</b>";
+        }else{
+            echo "<b>Produto com o id = ".$this->uri." Não existe!</b>";
+        }
     }
 
 }

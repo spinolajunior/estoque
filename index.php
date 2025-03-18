@@ -12,7 +12,6 @@ require 'controller/transacao.php';
 require 'view/view/categoriaView.php';
 require 'view/view/foneView.php';
 require 'view/view/local_armazenamentoView.php';
-require 'view/view/movimentacaoView.php';
 require 'view/view/pessoaView.php';
 require 'view/view/produtoView.php';
 require 'view/view/tipopessoaView.php';

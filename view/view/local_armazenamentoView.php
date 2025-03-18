@@ -1,10 +1,10 @@
 <?php 
 
 class Local_armazenamentoView{
-private $controlador,$retorno,$teste;
+private $controlador,$retorno,$uri;
 function __construct($uri,$metodo)
 {
-    $this->teste = $uri;
+    $this->uri = $uri;
     $this-> controlador = new CategoriaControler($uri,$metodo);
     $retorno = $this->controlador->despachar($uri,$metodo);
 
@@ -26,60 +26,59 @@ function __construct($uri,$metodo)
         return  $this -> delete($retorno);
         
     }
-
-
 }
-public function listar($categoria)
+
+public function listar($armazenamento)
     {
 
-        echo "<b> Categorias Cadastradas </b>";
+        echo "<b> Local de armazenamento cadastrados. </b>";
     
-        foreach($categoria as $query)
+        foreach($armazenamento as $query)
         {
                 echo "<br>";
-                echo  'ID = '.$query['idCategoria']." | ";
-                echo  'Categoria = '.$query['nome']." |";
+                echo  'ID = '.$query['idLocal_arm']." | ";
+                echo  'Local = '.$query['local']." |";
         } 
     }
     
-    public function get($categoria)
+    public function get($armazenamento)
     {
-        if($categoria){
-        echo "<b> Categoria Cadastrada  com o id = </b>".$this->teste[1];
-        foreach($categoria as $query)
+        if($armazenamento){
+        echo "<b> Local de armazenamento Cadastrado  com o id = </b>".$this->uri[1];
+        foreach($armazenamento as $query)
         {
                 echo "<br>";
-                echo  'ID = '.$query['idCategoria']." | ";
-                echo  'Categoria = '.$query['nome']." |";
+                echo  'ID = '.$query['idLocal_arm']." | ";
+                echo  'Local = '.$query['local']." |";
         }
         } else{
-            echo "<b> Categoria com o id = </b>".$this->teste[1]."<b> não existe.</b>";
+            echo "<b> Local de armazenamento com o id = </b>".$this->uri[1]."<b> não existe.</b>";
         }
         
 
     }
 
-    public function post($categoria)
+    public function post($armazenamento)
     {
-        if ($categoria)
-            echo "Categoria cadastrada com sucesso!";
+        if ($armazenamento)
+            echo "Local de armazenamento cadastrado com sucesso!";
         else
             echo "Erro";
     }
     
     
-    public function put($categoria)
+    public function put($armazenamento)
     {
-        if ($categoria)
-            echo "Categoria alterada com sucesso!";
+        if ($armazenamento)
+            echo "Local de armazenamento alterado com sucesso!";
         else
-            echo "Erro na atualização da categoria!";
+            echo "Erro na atualização do local de armazenamento!";
     }
     
-    public function delete($categoria)
+    public function delete($armazenamento)
     {
-        if($categoria)
-            echo "Categoria id {$this->teste[1]} Deletada com sucesso!";
+        if($armazenamento)
+            echo "Local de armazenamento id = ".$this->uri[1]." Deletado com sucesso!";
         else
             echo "deu erro!";
     }

@@ -1,11 +1,11 @@
 <?php 
 
 class PessoaView{
-private $controlador,$retorno,$teste;
+private $controlador,$retorno,$uri;
 function __construct($uri,$metodo)
 {
-    $this->teste = $uri;
-    $this-> controlador = new CategoriaControler($uri,$metodo);
+    $this->uri = $uri;
+    $this-> controlador = new PessoaControler($uri,$metodo);
     $retorno = $this->controlador->despachar($uri,$metodo);
 
     if(count($uri)==1){
@@ -29,57 +29,61 @@ function __construct($uri,$metodo)
 
 
 }
-public function listar($categoria)
+public function listar($pessoa)
     {
 
-        echo "<b> Categorias Cadastradas </b>";
+        echo "<b> Pessoas Cadastradas </b>";
     
-        foreach($categoria as $query)
+        foreach($pessoa as $query)
         {
                 echo "<br>";
-                echo  'ID = '.$query['idCategoria']." | ";
-                echo  'Categoria = '.$query['nome']." |";
+                echo  'ID = '.$query['id_Pessoa']." | ";
+                echo  'Nome = '.$query['nome']." |";
+                echo  'Tipo = '.$query['idTipo_pessoa']." |";
+                echo  'cpf/cnpj= '.$query['cnpj_cpf']." |";
         } 
     }
     
-    public function get($categoria)
+    public function get($pessoa)
     {
-        if($categoria){
-        echo "<b> Categoria Cadastrada  com o id = </b>".$this->teste[1];
-        foreach($categoria as $query)
+        if($pessoa){
+        echo "<b> Pessoa Cadastrada  com o id = </b>".$this->uri[1];
+        foreach($pessoa as $query)
         {
-                echo "<br>";
-                echo  'ID = '.$query['idCategoria']." | ";
-                echo  'Categoria = '.$query['nome']." |";
+            echo "<br>";
+            echo  'ID = '.$query['id_Pessoa']." | ";
+            echo  'Nome = '.$query['nome']." |";
+            echo  'Tipo = '.$query['idTipo_pessoa']." |";
+            echo  'cpf/cnpj= '.$query['cnpj_cpf']." |";
         }
         } else{
-            echo "<b> Categoria com o id = </b>".$this->teste[1]."<b> não existe.</b>";
+            echo "<b> Pessoa com o id = </b>".$this->uri[1]."<b> não existe.</b>";
         }
         
 
     }
 
-    public function post($categoria)
+    public function post($pessoa)
     {
-        if ($categoria)
-            echo "Categoria cadastrada com sucesso!";
+        if ($pessoa)
+            echo "Pessoa cadastrada com sucesso!";
         else
             echo "Erro";
     }
     
     
-    public function put($categoria)
+    public function put($pessoa)
     {
-        if ($categoria)
-            echo "Categoria alterada com sucesso!";
+        if ($pessoa)
+            echo "Pessoa alterada com sucesso!";
         else
-            echo "Erro na atualização da categoria!";
+            echo "Erro na atualização da Pessoa!";
     }
     
-    public function delete($categoria)
+    public function delete($pessoa)
     {
-        if($categoria)
-            echo "Categoria id {$this->teste[1]} Deletada com sucesso!";
+        if($pessoa)
+            echo "Pessoa id ".$this->uri[1]." Deletada com sucesso!";
         else
             echo "deu erro!";
     }
