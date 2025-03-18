@@ -5,7 +5,7 @@ private $controlador,$retorno,$uri;
 function __construct($uri,$metodo)
 {
     $this->uri = $uri;
-    $this-> controlador = new CategoriaControler($uri,$metodo);
+    $this-> controlador = new Local_armazenamentoController($uri,$metodo);
     $retorno = $this->controlador->despachar($uri,$metodo);
 
     if(count($uri)==1){
@@ -32,12 +32,12 @@ public function listar($armazenamento)
     {
 
         echo "<b> Local de armazenamento cadastrados. </b>";
-    
+
         foreach($armazenamento as $query)
         {
                 echo "<br>";
                 echo  'ID = '.$query['idLocal_arm']." | ";
-                echo  'Local = '.$query['local']." |";
+                echo  'Local = '.$query['local'];
         } 
     }
     

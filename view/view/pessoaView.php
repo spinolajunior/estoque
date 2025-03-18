@@ -37,10 +37,12 @@ public function listar($pessoa)
         foreach($pessoa as $query)
         {
                 echo "<br>";
+                echo '<hr>';
                 echo  'ID = '.$query['id_Pessoa']." | ";
-                echo  'Nome = '.$query['nome']." |";
-                echo  'Tipo = '.$query['idTipo_pessoa']." |";
-                echo  'cpf/cnpj= '.$query['cnpj_cpf']." |";
+                echo  'Nome = '.$query['nome']." | ";
+                echo  'Tipo = '.$query['idTipo_pessoa']." | ";
+                echo  'cpf/cnpj= '.$query['cnpj_cpf']." | ";
+                echo '<hr>';
         } 
     }
     

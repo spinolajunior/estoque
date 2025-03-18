@@ -3,8 +3,7 @@
 class Local_armazenamentoController extends Conexao{
     use Controlador;
     function __construct(array $uri,$metodo){
-        parent::__construct();
-        echo "Controlador da classe Local_armazenamento";    
+        parent::__construct();    
     
         if((count($uri) == 1)){
             if($metodo == "GET"){
@@ -45,7 +44,7 @@ class Local_armazenamentoController extends Conexao{
   public function put($id)
   {
       global $_PUT;
-      $local = $_POST['local'];
+      $local = $_PUT['local'];
      return $this-> pdo -> query("UPDATE local_arm SET local = '$local' where idLocal_arm = $id;");
   }
   

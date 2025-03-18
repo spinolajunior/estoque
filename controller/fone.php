@@ -34,8 +34,8 @@ class FoneControler extends Conexao{
     public function put($id)
     {
         global $_PUT;
-        $id_Pessoa = $_POST['id_Pessoa'];
-        $tel = $_POST['tel'];
+        $id_Pessoa = $_PUT['id_Pessoa'];
+        $tel = $_PUT['tel'];
 
        return $this-> pdo -> query("UPDATE fone SET 
        id_Pessoa = '$id_Pessoa',

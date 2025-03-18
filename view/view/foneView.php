@@ -82,7 +82,7 @@ public function listar($fone)
     public function delete($fone)
     {
         if($fone)
-            echo "Categoria id = ".$this->uri[1]." Deletada com sucesso!";
+            echo "Fone id = ".$this->uri[1]." Deletada com sucesso!";
         else
             echo "deu erro!";
     }

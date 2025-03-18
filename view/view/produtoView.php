@@ -35,28 +35,34 @@ class ProdutoView {
     
         foreach($produto as $query)
         {
-                echo "<br>";
-                echo  $query['codBarras']." | ";
-                echo  $query['nome']." |";
-                echo  $query['validade']." |";
-                echo  $query['quantidade']." |";
+                echo "<hr>";
+                echo  $query['nome']." | ";
+                echo  'Codigo de Barras | '.$query['codBarras']." | ";
+                echo  $query['validade']." | ";
+                echo  $query['quantidade']." | ";
+                echo "<hr>";
         } 
     }
     
     public function get($produto)
     {
-        echo "<b>Produto cadastrado com o id </b>".$this->uri[1];
+        if($produto){
+            echo "<b>Produto cadastrado com o codigo de barras = </b>".$this->uri[1];
         foreach($produto as $query)
         {
-                echo "<br>";
-                echo  $query['nome']." |";
-                echo  $query['codBarras']." | ";
-                echo  $query['validade']." |";
-                echo  $query['quantidade']." |<br> ";
+            echo "<hr>";
+            echo  $query['nome']." | ";
+            echo  'Codigo de Barras | '.$query['codBarras']." | ";
+            echo  $query['validade']." | ";
+            echo  $query['quantidade']." | ";
+            echo "<hr>";
+        } 
+        }else{
+            echo "<b>Produto com o codigo de Barras = ".$this->uri[1]." não existe. </b>";  
         }
     }
 
-    public function post($produto)
+    public function post($produto)  
     {
        
         if($produto){
@@ -79,9 +85,9 @@ class ProdutoView {
     public function delete($produto)
     {
         if($produto){
-            echo "<b>Produto com o id = ".$this->uri." Deletado com sucesso!</b>";
+            echo "<b>Produto com o id = ".$this->uri[1]." Deletado com sucesso!</b>";
         }else{
-            echo "<b>Produto com o id = ".$this->uri." Não existe!</b>";
+            echo "<b>Produto com o id = ".$this->uri[1]." Não existe!</b>";
         }
     }
 
