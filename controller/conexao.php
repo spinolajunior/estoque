@@ -1,7 +1,9 @@
 <?php 
 class Conexao{
-    public $pdo;
+    
+     public $pdo;
     function __construct(){
+        
         try{
         $host = "127.0.0.1";
         $dbName = "estoque";
@@ -17,5 +19,26 @@ class Conexao{
     }
     }
 
+    public function logar($usuario,$senha){
+           
+        if(isset($_POST['usuario']) and isset($_POST['senha'])){
+            $usuario = $_POST['usuario'];
+            $senha = $_POST['senha']; 
+            
+            $sql = "SELECT senha.senha 
+                    FROM usuario 
+                    JOIN senha ON senha.idUsuario = usuario.idUsuario 
+                    WHERE usuario.usuario = '$usuario'";
+
+            $logar = $this->pdo->query($sql)->fetch();
+            
+            if(isset($logar['senha']))
+            if($logar['senha'] == $senha){
+              return True;                       
+            } return false;  
+            
+    }
+
+}
 }
 ?>

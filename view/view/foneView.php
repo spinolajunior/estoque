@@ -1,30 +1,28 @@
 <?php 
 
 class FoneView{
-    private $controlador,$retorno,$uri;
+    private $controlador,$retorno;
     function __construct($uri,$metodo)
     {
-
-        $this->uri = $uri;
         $this-> controlador = new FoneControler($uri,$metodo);
         $retorno = $this->controlador->despachar($uri,$metodo);
 
     if(count($uri)==1){
         if($metodo == 'GET')
-        return $this -> listar($retorno);
+        return $this -> listar($retorno,$uri);
         elseif ($metodo == 'POST')
-        return  $this -> post($retorno);
+        return  $this -> post($retorno,$uri);
         
     }
     elseif(count($uri)==2){
         if($metodo == 'GET')
-        return $this -> get($retorno);
+        return $this -> get($retorno,$uri);
     
         elseif ($metodo == 'PUT')
-        return  $this -> put($retorno);
+        return  $this -> put($retorno,$uri);
         
         elseif ($metodo == 'DELETE')
-        return  $this -> delete($retorno);
+        return  $this -> delete($retorno,$uri);
         
     }
 
@@ -46,44 +44,43 @@ public function listar($fone)
     
     public function get($fone)
     {
-        if($fone){
-        echo "<b> Telefones Cadastrados  com o id = </b>".$this->uri[1];
-        foreach($fone as $query)
-        {
-            echo "<br>";
-            echo  'ID = '.$query['idFone']." | ";
-            echo  'Fone = '.$query['tel']." |";
-            echo 'ID-pessoa = '.$query['id_Pessoa'].' |';
-        }
-        } else{
-            echo "<b> Telefone com o id = </b>".$this->uri[1]."<b> não existe.</b>";
+        if(isset($fone['02']) or isset($fone['03'])){
+            foreach($fone as $x){
+                echo $x;
+            }
+           
+        }else{
+
+            echo "<b> Telefones Cadastrados </b>";
+            var_dump($fone);
+           foreach ($fone as $x){
+            echo "ID Fone = {$fone['idFone']}, Tel = {$fone['tel']}, ID pessoa = {$fone['id_Pessoa']}. <hr><br>";
+           }
         }
         
-
     }
 
     public function post($fone)
     {
-        if ($fone)
-            echo "Telefone cadastrado com sucesso!";
-        else
-            echo "Erro";
+        foreach ($fone as $x)
+        {
+            echo $x;
+        }
     }
-    
-    
+
     public function put($fone)
     {
-        if ($fone)
-            echo "Telefone id = ".$this->uri[1]." alterado com sucesso!";
-        else
-            echo "Erro na atualização do Telefone";
+        foreach ($fone as $x)
+        {
+            echo $x;
+        }
     }
     
-    public function delete($fone)
+    public function delete($fone,$uri)
     {
-        if($fone)
-            echo "Fone id = ".$this->uri[1]." Deletada com sucesso!";
-        else
-            echo "deu erro!";
+        foreach ($fone as $x)
+        {
+            echo $x;
+        }
     }
 }

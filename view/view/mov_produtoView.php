@@ -1,29 +1,28 @@
 <?php 
 
 class Mov_produtoView {
-private $controlador,$retorno,$uri;
+private $controlador,$retorno;
 function __construct($uri,$metodo)
 {
-    $this->uri = $uri;
-    $this-> controlador = new Mov_produtoControler($uri,$metodo);
+    $this-> controlador = new Mov_produtoController($uri,$metodo);
     $retorno = $this->controlador->despachar($uri,$metodo);
 
     if(count($uri)==1){
         if($metodo == 'GET')
-        return $this -> listar($retorno);
+        return $this -> listar($retorno,$uri);
         elseif ($metodo == 'POST')
-        return  $this -> post($retorno);
+        return  $this -> post($retorno,$uri);
         
     }
     elseif(count($uri)==2){
         if($metodo == 'GET')
-        return $this -> get($retorno);
+        return $this -> get($retorno,$uri);
     
         elseif ($metodo == 'PUT')
-        return  $this -> put($retorno);
+        return  $this -> put($retorno,$uri);
         
         elseif ($metodo == 'DELETE')
-        return  $this -> delete($retorno);
+        return  $this -> delete($retorno,$uri);
         
     }
 
@@ -32,57 +31,55 @@ function __construct($uri,$metodo)
 public function listar($movimentacao)
     {
 
-        echo "<b> movimentacao Cadastradas </b>";
+        echo "<b> movimentações! </b>";
     
         foreach($movimentacao as $query)
         {
-                echo "<br>";
+                echo "<br> <hr>";
                 echo  'ID Movimentação = '.$query['idMov']." | ";
                 echo  'Codigo Produto = '.$query['codBarras']." |";
-                echo  'Quantidade = '.$query['quantidade']." |";
+                echo  'Quantidade = '.$query['quantidade']." | <hr>";
         } 
     }
     
-    public function get($movimentacao)
+    public function get($movimentacao,$uri)
     {
-        if($movimentacao){
-        echo "<b> movimentacao  com o id = </b>".$this->uri[1];
+        if(isset($movimentacao['02']) or isset($movimentacao['03'])){
+            foreach ($movimentacao as $x){
+                echo $x;
+            }
+        }else{ 
+        echo "<b> Movimentação ID = $uri[1]</b>";
         foreach($movimentacao as $query)
-        {
-            echo "<br>";
+        {  
+            echo "<br> <hr>";
             echo  'ID Movimentação = '.$query['idMov']." | ";
             echo  'Codigo Produto = '.$query['codBarras']." |";
-            echo  'Quantidade = '.$query['quantidade']." |";
-        }
-        } else{
-            echo "<b> movimentacao com o id = </b>".$this->uri[1]."<b> não existe.</b>";
+            echo  'Quantidade = '.$query['quantidade']." |<hr>";
         }
         
-
     }
+}
 
     public function post($movimentacao)
     {
-        if ($movimentacao)
-            echo "Movimentação cadastrada com sucesso!";
-        else
-            echo "Erro";
+        foreach($movimentacao as $x){
+            echo $x;
+        }
     }
     
     
     public function put($movimentacao)
     {
-        if ($movimentacao)
-            echo "Movimentação alterada com sucesso!";
-        else
-            echo "Erro na atualização da Movimentação!";
+        foreach($movimentacao as $x){
+            echo $x;
+        }
     }
     
     public function delete($movimentacao)
     {
-        if($movimentacao)
-            echo "Movimentação id = ".$this->uri[1]." Deletada com sucesso!";
-        else
-            echo "deu erro!";
+        foreach($movimentacao as $x){
+            echo $x;
+        }
     }
 }

@@ -1,29 +1,28 @@
 <?php 
 
 class TipopessoaView{
-private $controlador,$retorno,$uri;
+private $controlador,$retorno;
 function __construct($uri,$metodo)
 {
-    $this->uri = $uri;
     $this-> controlador = new Tipo_pessoaController($uri,$metodo);
     $retorno = $this->controlador->despachar($uri,$metodo);
 
     if(count($uri)==1){
         if($metodo == 'GET')
-        return $this -> listar($retorno);
+        return $this -> listar($retorno,$uri);
         elseif ($metodo == 'POST')
-        return  $this -> post($retorno);
+        return  $this -> post($retorno,$uri);
         
     }
     elseif(count($uri)==2){
         if($metodo == 'GET')
-        return $this -> get($retorno);
+        return $this -> get($retorno,$uri);
     
         elseif ($metodo == 'PUT')
-        return  $this -> put($retorno);
+        return  $this -> put($retorno,$uri);
         
         elseif ($metodo == 'DELETE')
-        return  $this -> delete($retorno);
+        return  $this -> delete($retorno,$uri);
         
     }
 
@@ -41,45 +40,42 @@ public function listar($tipopessoa)
         } 
     }
     
-    public function get($tipopessoa)
+    public function get($tipopessoa,$uri)
     {
-        if($tipopessoa){
-        echo "<b> Tipo de pessoa Cadastrado com o id = </b>".$this->uri[1];
-        foreach($tipopessoa as $query)
+        if(isset($tipopessoa['02']) or isset($tipopessoa['03'])){
+            foreach ($tipopessoa as $x){
+                echo $x;
+            }
+        }else{
+            echo "<b> Tipo de pessoa Cadastrado com o id = </b>".$uri[1];
+            foreach($tipopessoa as $query)
         {
-                echo "<br>";
+                echo "<br><hr>";
                 echo  'ID = '.$query['idTipo']." | ";
-                echo  'Tipo = '.$query['nome']." |";
+                echo  'Tipo = '.$query['nome']." |<hr>";
         }
-        } else{
-            echo "<b> Tipo de pessoa com o id = </b>".$this->uri[1]."<b> não existe.</b>";
         }
-        
-
     }
 
     public function post($tipopessoa)
     {
-        if ($tipopessoa)
-            echo "Tipo de pessoa cadastrado com sucesso!";
-        else
-            echo "Erro";
+        foreach($tipopessoa as $x){
+            echo $x;
+        }
     }
     
     
     public function put($tipopessoa)
     {
-        if ($tipopessoa)
-            echo "Tipo de pessoa alterado com sucesso!";
-        else
-            echo "Erro na atualização do Tipo de pessoa!";
+        foreach($tipopessoa as $x){
+            echo $x;
+        }
     }
     
     public function delete($tipopessoa)
     {
-        if($tipopessoa)
-            echo "Tipo de pessoa id = ".$this->uri[1].", Deletado com sucesso!";
-        else
-            echo "deu erro!";
+        foreach($tipopessoa as $x){
+            echo $x;
+        }
     }
 }

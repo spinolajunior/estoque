@@ -20,5 +20,13 @@ trait Controlador {
                 return $this->delete($uri[1]);
         }
     }
+
+    public function validarID($id): bool{
+        $regex = "/^[0-9]{1,}$/";
+        if(preg_match($regex,$id) and $id != 0){
+            return true;
+        }
+        return false;
+    }
         
 }

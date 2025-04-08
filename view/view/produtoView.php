@@ -1,29 +1,28 @@
 <?php 
 class ProdutoView {
-    private $controlador,$retorno,$uri;
+    private $controlador,$retorno;
     function __construct($uri,$metodo)
     {
-        $this->uri=$uri;
         $this->controlador = new ProdutoControler();
         $retorno = $this->controlador->despachar($uri,$metodo);
 
 
         if(count($uri)==1){
             if($metodo == 'GET')
-            return $this -> listar($retorno);
+            return $this -> listar($retorno,$uri);
             elseif ($metodo == 'POST')
-            return  $this -> post($retorno);
+            return  $this -> post($retorno,$uri);
             
         }
         elseif(count($uri)==2){
             if($metodo == 'GET')
-            return $this -> get($retorno);
+            return $this -> get($retorno,$uri);
         
             elseif ($metodo == 'PUT')
-            return  $this -> put($retorno);
+            return  $this -> put($retorno,$uri);
             
             elseif ($metodo == 'DELETE')
-            return  $this -> delete($retorno);
+            return  $this -> delete($retorno,$uri);
             
         }
     }
@@ -44,50 +43,51 @@ class ProdutoView {
         } 
     }
     
-    public function get($produto)
+    public function get($produto,$uri)
     {
-        if($produto){
-            echo "<b>Produto cadastrado com o codigo de barras = </b>".$this->uri[1];
-        foreach($produto as $query)
-        {
-            echo "<hr>";
-            echo  $query['nome']." | ";
-            echo  'Codigo de Barras | '.$query['codBarras']." | ";
-            echo  $query['validade']." | ";
-            echo  $query['quantidade']." | ";
-            echo "<hr>";
-        } 
-        }else{
-            echo "<b>Produto com o codigo de Barras = ".$this->uri[1]." não existe. </b>";  
+       if(isset($produto['02']) or isset($produto['03']))
+       {
+            foreach($produto as $x){
+                echo $x;
+            }
+       }else
+       {
+
+            echo "<b>Produto  = </b>".$uri[1];
+            foreach($produto as $query)
+            {
+                echo "<hr>";
+                echo  "Produto = ". $query['nome']." | ";
+                echo  'Codigo de Barras = '.$query['codBarras']." | ";
+                echo  'Validade = '.$query['validade']." | ";
+                echo  'Quantidade = '.$query['quantidade']." | ";
+                echo "<hr>";
+            } 
         }
+        
+        
     }
 
     public function post($produto)  
     {
        
-        if($produto){
-            echo 'Produto cadastrado com sucesso';
-        }else{
-            echo 'Falha ao cadastrar o produto';
+        foreach($produto as $x){
+            echo $x;
         }
     }
     
     
     public function put($produto)
     {
-        if($produto){
-            echo 'Produto atualizado com sucesso';
-        }else{
-            echo 'Falha ao atualizar o produto';
+        foreach($produto as $x){
+            echo $x;
         }
     }
     
-    public function delete($produto)
+    public function delete($produto,$uri)
     {
-        if($produto){
-            echo "<b>Produto com o id = ".$this->uri[1]." Deletado com sucesso!</b>";
-        }else{
-            echo "<b>Produto com o id = ".$this->uri[1]." Não existe!</b>";
+        foreach($produto as $x){
+            echo $x;
         }
     }
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18/02/2025 às 17:46
+-- Tempo de geração: 08/04/2025 às 08:04
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -38,7 +38,27 @@ CREATE TABLE `categoria` (
 
 INSERT INTO `categoria` (`idCategoria`, `nome`) VALUES
 (1, 'Prod - Limpeza'),
-(2, 'Prod - Bebida');
+(2, 'Prod - Bebida'),
+(3, 'Alimento');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `email`
+--
+
+CREATE TABLE `email` (
+  `idEmail` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `email` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `email`
+--
+
+INSERT INTO `email` (`idEmail`, `idUsuario`, `email`) VALUES
+(1, 1, 'juniorspinola16@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -92,6 +112,14 @@ CREATE TABLE `movimentacao` (
   `idPessoa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `movimentacao`
+--
+
+INSERT INTO `movimentacao` (`idMov`, `idTra`, `idPessoa`) VALUES
+(1, 1, 1),
+(2, 2, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -103,6 +131,14 @@ CREATE TABLE `mov_produto` (
   `codBarras` bigint(20) NOT NULL,
   `quantidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `mov_produto`
+--
+
+INSERT INTO `mov_produto` (`idMov`, `codBarras`, `quantidade`) VALUES
+(1, 7890000000002, 2),
+(2, 7890000000004, 30);
 
 -- --------------------------------------------------------
 
@@ -146,7 +182,29 @@ CREATE TABLE `produto` (
 
 INSERT INTO `produto` (`codBarras`, `nome`, `validade`, `quantidade`, `idLocal_arm`, `idCategoria`) VALUES
 (7890000000000, 'Coca-Cola', '2026-02-18', 200, 1, 2),
-(7890000000001, 'Sabão em Pó', '2034-07-12', 250, 3, 1);
+(7890000000001, 'Sabão em Pó', '2034-07-12', 250, 3, 1),
+(7890000000002, 'Bolacha-recheada', '2026-12-31', 30, 2, 3),
+(7890000000003, 'Salgadinho Plink', '2026-12-31', 30, 2, 3),
+(7890000000004, 'Café Santa Clara', '2026-12-31', 30, 2, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `senha`
+--
+
+CREATE TABLE `senha` (
+  `idSenha` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `senha` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `senha`
+--
+
+INSERT INTO `senha` (`idSenha`, `idUsuario`, `senha`) VALUES
+(1, 1, '120777Ce\'');
 
 -- --------------------------------------------------------
 
@@ -186,6 +244,25 @@ INSERT INTO `transacao` (`idTra`, `nome`) VALUES
 (1, 'Debito'),
 (2, 'Credito');
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `idUsuario` int(11) NOT NULL,
+  `usuario` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `usuario`
+--
+
+INSERT INTO `usuario` (`idUsuario`, `usuario`) VALUES
+(1, 'juniorspinola'),
+(2, 'robertojunior');
+
 --
 -- Índices para tabelas despejadas
 --
@@ -195,6 +272,13 @@ INSERT INTO `transacao` (`idTra`, `nome`) VALUES
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`idCategoria`);
+
+--
+-- Índices de tabela `email`
+--
+ALTER TABLE `email`
+  ADD PRIMARY KEY (`idEmail`),
+  ADD KEY `idUsuario` (`idUsuario`);
 
 --
 -- Índices de tabela `fone`
@@ -241,6 +325,13 @@ ALTER TABLE `produto`
   ADD KEY `idCategoria` (`idCategoria`);
 
 --
+-- Índices de tabela `senha`
+--
+ALTER TABLE `senha`
+  ADD PRIMARY KEY (`idSenha`),
+  ADD KEY `idUsuario` (`idUsuario`);
+
+--
 -- Índices de tabela `tipopessoa`
 --
 ALTER TABLE `tipopessoa`
@@ -253,6 +344,12 @@ ALTER TABLE `transacao`
   ADD PRIMARY KEY (`idTra`);
 
 --
+-- Índices de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`idUsuario`);
+
+--
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
@@ -260,7 +357,13 @@ ALTER TABLE `transacao`
 -- AUTO_INCREMENT de tabela `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `email`
+--
+ALTER TABLE `email`
+  MODIFY `idEmail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `fone`
@@ -278,13 +381,25 @@ ALTER TABLE `local_arm`
 -- AUTO_INCREMENT de tabela `movimentacao`
 --
 ALTER TABLE `movimentacao`
-  MODIFY `idMov` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMov` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `mov_produto`
+--
+ALTER TABLE `mov_produto`
+  MODIFY `idMov` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `pessoa`
 --
 ALTER TABLE `pessoa`
   MODIFY `id_Pessoa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `senha`
+--
+ALTER TABLE `senha`
+  MODIFY `idSenha` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `tipopessoa`
@@ -299,8 +414,20 @@ ALTER TABLE `transacao`
   MODIFY `idTra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- Restrições para tabelas despejadas
 --
+
+--
+-- Restrições para tabelas `email`
+--
+ALTER TABLE `email`
+  ADD CONSTRAINT `email_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`);
 
 --
 -- Restrições para tabelas `fone`
@@ -334,6 +461,12 @@ ALTER TABLE `pessoa`
 ALTER TABLE `produto`
   ADD CONSTRAINT `produto_ibfk_1` FOREIGN KEY (`idLocal_arm`) REFERENCES `local_arm` (`idLocal_arm`),
   ADD CONSTRAINT `produto_ibfk_2` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`);
+
+--
+-- Restrições para tabelas `senha`
+--
+ALTER TABLE `senha`
+  ADD CONSTRAINT `senha_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

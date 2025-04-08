@@ -1,29 +1,28 @@
 <?php 
 
 class Local_armazenamentoView{
-private $controlador,$retorno,$uri;
+private $controlador,$retorno;
 function __construct($uri,$metodo)
 {
-    $this->uri = $uri;
     $this-> controlador = new Local_armazenamentoController($uri,$metodo);
     $retorno = $this->controlador->despachar($uri,$metodo);
 
     if(count($uri)==1){
         if($metodo == 'GET')
-        return $this -> listar($retorno);
+        return $this -> listar($retorno,$uri);
         elseif ($metodo == 'POST')
-        return  $this -> post($retorno);
+        return  $this -> post($retorno,$uri);
         
     }
     elseif(count($uri)==2){
         if($metodo == 'GET')
-        return $this -> get($retorno);
+        return $this -> get($retorno,$uri);
     
         elseif ($metodo == 'PUT')
-        return  $this -> put($retorno);
+        return  $this -> put($retorno,$uri);
         
         elseif ($metodo == 'DELETE')
-        return  $this -> delete($retorno);
+        return  $this -> delete($retorno,$uri);
         
     }
 }
@@ -41,18 +40,21 @@ public function listar($armazenamento)
         } 
     }
     
-    public function get($armazenamento)
+    public function get($armazenamento,$uri)
     {
-        if($armazenamento){
-        echo "<b> Local de armazenamento Cadastrado  com o id = </b>".$this->uri[1];
+        if(isset($armazenamento['02']) or isset($armazenamento['03'])){
+            foreach($armazenamento as $x){
+                echo $x;
+            }
+
+        } else{
+            echo "<b> Local de armazenamento Cadastrado  com o id = </b>".$uri[1];
         foreach($armazenamento as $query)
         {
                 echo "<br>";
                 echo  'ID = '.$query['idLocal_arm']." | ";
                 echo  'Local = '.$query['local']." |";
         }
-        } else{
-            echo "<b> Local de armazenamento com o id = </b>".$this->uri[1]."<b> não existe.</b>";
         }
         
 
@@ -60,26 +62,26 @@ public function listar($armazenamento)
 
     public function post($armazenamento)
     {
-        if ($armazenamento)
-            echo "Local de armazenamento cadastrado com sucesso!";
-        else
-            echo "Erro";
+        foreach ($armazenamento as $x)
+        {
+            echo $x;
+        }
     }
     
     
     public function put($armazenamento)
     {
-        if ($armazenamento)
-            echo "Local de armazenamento alterado com sucesso!";
-        else
-            echo "Erro na atualização do local de armazenamento!";
+        foreach ($armazenamento as $x)
+        {
+            echo $x;
+        }
     }
     
-    public function delete($armazenamento)
+    public function delete($armazenamento,$uri)
     {
-        if($armazenamento)
-            echo "Local de armazenamento id = ".$this->uri[1]." Deletado com sucesso!";
-        else
-            echo "deu erro!";
+        foreach ($armazenamento as $x)
+        {
+            echo $x;
+        }
     }
 }
