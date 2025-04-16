@@ -37,8 +37,24 @@ class Conexao{
               return True;                       
             } return false;  
             
+        }
     }
 
+    public function sanitize($string) {
+        // Remove espaços extras nas bordas
+        $string = trim($string);
+    
+        // Remove tags HTML e PHP
+        $string = strip_tags($string);
+    
+        // Converte caracteres especiais para entidades HTML (proteção contra XSS)
+        $string = htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+    
+        // Opcional: remove caracteres não imprimíveis
+        $string = preg_replace('/[\x00-\x1F\x7F]/u', '', $string);
+    
+        return $string;
+    }
 }
-}
+
 ?>
