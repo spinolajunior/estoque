@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08/04/2025 às 08:04
+-- Tempo de geração: 16/04/2025 às 18:31
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -204,7 +204,7 @@ CREATE TABLE `senha` (
 --
 
 INSERT INTO `senha` (`idSenha`, `idUsuario`, `senha`) VALUES
-(1, 1, '120777Ce\'');
+(1, 1, '0000000Tr\'1');
 
 -- --------------------------------------------------------
 
